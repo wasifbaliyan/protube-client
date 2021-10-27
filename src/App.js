@@ -1,5 +1,11 @@
+import Layout from "./components/Layout";
+
 function App() {
-  return <div>Protube</div>;
+  return (
+    <div>
+      <Layout />
+    </div>
+  );
 }
 
 export default App;
