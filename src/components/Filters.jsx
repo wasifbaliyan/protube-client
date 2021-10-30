@@ -2,8 +2,16 @@ import React from "react";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
+const CATEGORIES = [
+  "all",
+  "punjabi",
+  "emorap",
+  "pop",
+  "bollywood",
+  "electronic",
+];
 
-export default function Filters() {
+export default function Filters({ filter, setFilter }) {
   return (
     <Box
       borderTop="1px solid #333"
@@ -12,11 +20,14 @@ export default function Filters() {
       backgroundColor="#202020"
     >
       <Stack direction="row" spacing={1} flexWrap="wrap">
-        <Chip  color="info" label="Indie Music" />
-        <Chip color="warning" variant="outlined" label="Bollywood Music" />
-        <Chip color="warning" variant="outlined" label="Lofi Music" />
-        <Chip color="warning" variant="outlined" label="Chill Music" />
-        <Chip color="warning" variant="outlined" label="Dream Pop Music" />
+        {CATEGORIES.map((category) => (
+          <Chip
+            onClick={() => setFilter(category)}
+            color="info"
+            variant={filter === category ? "filled" : "outlined"}
+            label={category.toUpperCase() + ` MUSIC`}
+          />
+        ))}
       </Stack>
     </Box>
   );

@@ -2,13 +2,15 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import { AccountCircle } from "@mui/icons-material";
 import { Menu, MenuItem, TextField } from "@mui/material";
-
+import { logout } from "../redux/authSlice";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 export default function Header({ open, setOpen }) {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const menuopen = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -30,19 +32,10 @@ export default function Header({ open, setOpen }) {
         elevation={0}
       >
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            onClick={() => setOpen(!open)}
-          >
-            <MenuIcon fontSize="large" />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Protube
-          </Typography>
+          <Box sx={{ flexGrow: 1 }}>
+            <img src="/Protube.png" alt="main logo" width="150px" />
+          </Box>
+
           <Box sx={{ flexGrow: 1 }}>
             <TextField
               sx={{ color: "#fff", backgroundColor: "#121212", width: "350px" }}
@@ -77,8 +70,15 @@ export default function Header({ open, setOpen }) {
             }}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem
+              onClick={() => {
+                dispatch(logout());
+                history.push("/");
+                handleClose();
+              }}
+            >
+              Logout
+            </MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
