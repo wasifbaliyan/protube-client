@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+![Logo](https://res.cloudinary.com/dnboldv5r/image/upload/v1635615714/protube/protube-dark_fi8kvn.png)
+A youtub clone app built using ReactJS, Material UI, Redux, react router etc
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tech Stack
 
-## Available Scripts
+**Client:** React, React Router, Material UI, Redux and React Router etc
 
-In the project directory, you can run:
+**Server:** Node, Mongodb, express, JWT etc.
 
-### `npm start`
+## Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![App Screenshot](https://res.cloudinary.com/dnboldv5r/image/upload/v1635615620/protube/Screenshot_from_2021-10-30_23-08-20_mvdtqw.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![App Screenshot](https://res.cloudinary.com/dnboldv5r/image/upload/v1635615617/protube/Screenshot_from_2021-10-30_23-08-40_esgzfg.png)
 
-### `npm test`
+![App Screenshot](https://res.cloudinary.com/dnboldv5r/image/upload/v1635615626/protube/Screenshot_from_2021-10-30_23-09-20_lognfz.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Video list from api
+- video details page
+- filters by categories
+- Authentication
+- dark mode only
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Demo
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Live app link: https://protubehq.netlify.app/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Run Locally
 
-### `npm run eject`
+Clone the project
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+  git clone https://github.com/wasifbaliyan/protube-client.git
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Go to the project directory
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+  cd protube-client
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Install dependencies
 
-## Learn More
+```bash
+  npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Start react app
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+  npm start
+```
 
-### Code Splitting
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [@wasifbaliyan](https://www.github.com/wasifbaliyan)
 
-### Analyzing the Bundle Size
+## 🚀 About Me
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+I'm a full stack Javascript Developer. I Love to build beautiful and scalable web apps.
 
-### Making a Progressive Web App
+## 🔗 Links
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://wasifbaliyan.com/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/wasifbaliyan)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/wasifbaliyan)
 
-### Advanced Configuration
+## Badges
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
-### Deployment
+## Roadmap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Search
 
-### `npm run build` fails to minify
+- Playlists
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Support
+
+For support, email hello@wasifbaliyan.com
+
+## Feedback
+
+If you have any feedback, please reach out to me at hello@wasifbaliyan.com
