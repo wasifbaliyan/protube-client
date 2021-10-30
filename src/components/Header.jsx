@@ -6,9 +6,18 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { AccountCircle } from "@mui/icons-material";
-import { TextField } from "@mui/material";
+import { Menu, MenuItem, TextField } from "@mui/material";
 
 export default function Header({ open, setOpen }) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const menuopen = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -52,12 +61,25 @@ export default function Header({ open, setOpen }) {
           <IconButton
             size="large"
             edge="end"
-            aria-label="account of current user"
             aria-haspopup="true"
-            color="inherit"
+            aria-expanded={menuopen ? "true" : undefined}
+            onClick={handleClick}
           >
-            <AccountCircle fontSize="large" />
+            <AccountCircle sx={{ color: "#fff" }} fontSize="large" />
           </IconButton>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={menuopen}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={handleClose}>Logout</MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
     </Box>
