@@ -33,7 +33,7 @@ export default function Header({ open, setOpen }) {
       >
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>
-            <img src="/Protube.png" alt="main logo" width="150px" />
+            <img src="/Protube-main.png" alt="main logo" width="150px" />
           </Box>
 
           <Box sx={{ flexGrow: 1 }}>
