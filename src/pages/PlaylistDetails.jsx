@@ -12,30 +12,43 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPlaylistDetails } from "../redux/playlistSlice";
 import { removeVideoFromPlaylist } from "../api";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export default function PlaylistDetails() {
   const { id } = useParams();
-  const { playlistDetails, status } = useSelector((state) => state.playlist);
+  const { playlistDetails, playlistStatus } = useSelector(
+    (state) => state.playlist
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPlaylistDetails(id));
   }, [dispatch, id]);
 
   async function handleRemove(videoId) {
-    const confirmaton = window.confirm("Are you sure you want to remove this?");
-    if (!confirmaton) return;
+    try {
+      const confirmaton = window.confirm(
+        "Are you sure you want to remove this?"
+      );
+      if (!confirmaton) return;
 
-    const res = await removeVideoFromPlaylist({ playlistId: id, id: videoId });
-    if (res) {
-      alert("Deleted succesfully");
-      dispatch(getPlaylistDetails(id));
+      const res = await removeVideoFromPlaylist({
+        playlistId: id,
+        id: videoId,
+      });
+      if (res) {
+        toast.success("Video removed successfully");
+        dispatch(getPlaylistDetails(id));
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
     }
   }
 
   return (
     <>
-      {status === "loading" && <CircularProgress />}
-      {status === "success" && (
+      {playlistStatus === "loading" && <CircularProgress />}
+      {playlistStatus === "success" && (
         <Box sx={{ maxHeight: "100%", overflowY: "scroll" }}>
           <Box px="1rem" pt="1rem">
             <Typography sx={{ color: "#eee" }} variant="h5">
@@ -48,34 +61,42 @@ export default function PlaylistDetails() {
           <Stack sx={{ p: "1rem" }}>
             {playlistDetails.videos.map((video) => (
               <Box margin="10px 0" key={video._id}>
-                <Grid container spacing="10">
-                  <Grid item xs={12} md={3} lg={2}>
-                    <img
-                      width="100%"
-                      src={video.videoId && video.videoId.thumbnail_url}
-                      alt="thumbnail"
-                    />
+                <Link
+                  to={`/videos/${video.videoId._id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Grid container spacing="10">
+                    <Grid item xs={12} md={3} lg={2}>
+                      <img
+                        width="100%"
+                        src={video.videoId && video.videoId.thumbnail_url}
+                        alt="thumbnail"
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={9} lg={10}>
+                      <Box sx={{ color: "#FFF", display: "flex" }}>
+                        <Typography>
+                          {video.videoId && video.videoId.title}
+                        </Typography>
+                        <IconButton
+                          onClick={() => handleRemove(video.videoId._id)}
+                          sx={{ ml: ".8rem" }}
+                        >
+                          <DeleteOutlineOutlined
+                            fontSize="small"
+                            color="error"
+                          />
+                        </IconButton>
+                      </Box>
+                      <Box>
+                        <Typography color="white">
+                          {video.videoId && video.videoId.author_name}
+                        </Typography>
+                        <Typography color="gray">Tues Oct 30 2021</Typography>
+                      </Box>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12} md={9} lg={10}>
-                    <Box sx={{ color: "#FFF", display: "flex" }}>
-                      <Typography>
-                        {video.videoId && video.videoId.title}
-                      </Typography>
-                      <IconButton
-                        onClick={() => handleRemove(video.videoId._id)}
-                        sx={{ ml: ".8rem" }}
-                      >
-                        <DeleteOutlineOutlined fontSize="small" color="error" />
-                      </IconButton>
-                    </Box>
-                    <Box>
-                      <Typography color="white">
-                        {video.videoId && video.videoId.author_name}
-                      </Typography>
-                      <Typography color="gray">Tues Oct 30 2021</Typography>
-                    </Box>
-                  </Grid>
-                </Grid>
+                </Link>
               </Box>
             ))}
           </Stack>

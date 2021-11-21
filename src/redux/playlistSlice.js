@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
   playlists: [],
   status: "idle",
+  playlistStatus: "idle",
   playlistDetails: {},
 };
 
@@ -39,14 +40,14 @@ export const playlistSlice = createSlice({
       state.status = "failed";
     },
     [getPlaylistDetails.pending]: (state, action) => {
-      state.status = "loading";
+      state.playlistStatus = "loading";
     },
     [getPlaylistDetails.fulfilled]: (state, action) => {
-      state.status = "success";
+      state.playlistStatus = "success";
       state.playlistDetails = action.payload.response.playlist;
     },
     [getPlaylistDetails.rejected]: (state, action) => {
-      state.status = "failed";
+      state.playlistStatus = "failed";
     },
   },
 });

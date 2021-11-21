@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getVideos } from "../redux/videoSlice";
 
 export default function Home() {
+  const { search } = useSelector((state) => state.video);
+
   const [filter, setFilter] = useState("all");
   const dispatch = useDispatch();
   const { videos, status } = useSelector((state) => state.video);
@@ -21,6 +23,12 @@ export default function Home() {
     }
   }
 
+  function getQueriedVideos() {
+    return getFilteredVideos().filter((video) =>
+      video.title.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
   return (
     <>
       <Filters filter={filter} setFilter={setFilter} />
@@ -33,7 +41,7 @@ export default function Home() {
       >
         {status === "loading" && <CircularProgress color="info" />}
         {status === "success" &&
-          getFilteredVideos().map((video) => (
+          getQueriedVideos().map((video) => (
             <Grid item key={video._id}>
               <Video video={video} />
             </Grid>

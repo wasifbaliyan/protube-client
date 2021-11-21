@@ -10,6 +10,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { createPlaylist } from "../api";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Playlists() {
   const { status, playlists } = useSelector((state) => state.playlist);
@@ -33,12 +34,14 @@ export default function Playlists() {
     try {
       const data = await createPlaylist({ name });
       if (data) {
-        alert("Playlist created successfully");
+        toast.success("Playlist created successfully");
         dispatch(getPlaylists());
       }
       handleClose();
       setName("");
     } catch (error) {
+      toast.error("Something went wrong");
+
       console.log(error);
     }
   }
