@@ -5,11 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute";
+import Bookmarks from "./pages/Bookmarks";
+import History from "./pages/History";
 import Home from "./pages/Home";
+import LikedVideos from "./pages/LikedVideos";
 import Login from "./pages/Login";
 import PlaylistDetails from "./pages/PlaylistDetails";
 import Playlists from "./pages/Playlists";
 import VideoDetails from "./pages/VideoDetails";
+import WatchLater from "./pages/WatchLater";
 import { setAuth } from "./redux/authSlice";
 
 function App() {
@@ -50,22 +54,22 @@ function App() {
       </PrivateRoute>
       <PrivateRoute exact path="/liked">
         <Layout>
-          <PlaylistDetails />
+          <LikedVideos />
         </Layout>
       </PrivateRoute>
       <PrivateRoute exact path="/watch-later">
         <Layout>
-          <PlaylistDetails />
+          <WatchLater />
         </Layout>
       </PrivateRoute>
       <PrivateRoute exact path="/saved">
         <Layout>
-          <PlaylistDetails />
+          <Bookmarks />
         </Layout>
       </PrivateRoute>
       <PrivateRoute exact path="/history">
         <Layout>
-          <PlaylistDetails />
+          <History />
         </Layout>
       </PrivateRoute>
       <Route exact path="/videos/:id">

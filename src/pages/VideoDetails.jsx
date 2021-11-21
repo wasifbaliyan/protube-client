@@ -8,6 +8,7 @@ import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideoDetails } from "../redux/videoSlice";
 import { useParams } from "react-router";
+import { addToBookmarks, addToHistory, addToLikes, addToWatch } from "../api";
 export default function VideoDetails() {
   const dispatch = useDispatch();
   const { videoDetails, status } = useSelector((state) => state.video);
@@ -15,7 +16,40 @@ export default function VideoDetails() {
   useEffect(() => {
     dispatch(getVideoDetails(id));
   }, [dispatch, id]);
-  console.log(videoDetails);
+
+  useEffect(() => {
+    async function addVideoToHistory() {
+      await addToHistory(id);
+    }
+    addVideoToHistory();
+  }, [id]);
+
+  async function handleLike() {
+    try {
+      const response = await addToLikes({ id });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleBookmark() {
+    try {
+      const response = await addToBookmarks({ id });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function handleWatchLater() {
+    try {
+      const response = await addToWatch({ id });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <Box sx={{ maxHeight: "100%", overflowY: "scroll" }}>
       {status === "loading" && <CircularProgress color="info" />}
@@ -47,12 +81,14 @@ export default function VideoDetails() {
             borderBottom="1px solid #333"
           >
             <Button
+              onClick={handleLike}
               sx={{ color: "#fff", mr: ".3rem" }}
               startIcon={<ThumbUpAltOutlinedIcon />}
             >
               Like
             </Button>
             <Button
+              onClick={handleBookmark}
               sx={{ color: "#fff", mr: ".3rem" }}
               startIcon={<BookmarkBorderOutlinedIcon />}
             >
@@ -65,6 +101,7 @@ export default function VideoDetails() {
               Add TO playlist
             </Button>
             <Button
+              onClick={handleWatchLater}
               sx={{ color: "#fff", mr: ".3rem" }}
               startIcon={<WatchLaterOutlinedIcon />}
             >

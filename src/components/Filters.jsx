@@ -24,6 +24,7 @@ export default function Filters({ filter, setFilter }) {
       <Stack direction="row" spacing={1} flexWrap="wrap">
         {CATEGORIES.map((category) => (
           <Chip
+            key={category}
             sx={{ marginBottom: ".2rem" }}
             onClick={() => setFilter(category)}
             color="info"
