@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const initialState = {
   isLoggedIn: false,
@@ -52,9 +53,11 @@ export const authSlice = createSlice({
         JSON.stringify({ token, name, email, isLoggedIn: true })
       );
       state.isLoggedIn = true;
+      toast.success("Login successfull");
     },
     [loginUser.rejected]: (state, action) => {
       state.status = "failed";
+      toast.error("Login failed. Please try again");
     },
 
     [registerUser.pending]: (state, action) => {
@@ -69,9 +72,11 @@ export const authSlice = createSlice({
       );
 
       state.isLoggedIn = true;
+      toast.success("User registered successfull");
     },
     [registerUser.rejected]: (state, action) => {
       state.status = "failed";
+      toast.error("Registration failed. Please try again");
     },
 
     [getUser.pending]: (state, action) => {

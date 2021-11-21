@@ -19,9 +19,10 @@ export default function Sidebar({ handleDrawerClose, open }) {
     <Box sx={{ width: "100%", mt: "5rem" }}>
       <List sx={{ color: "#fff" }}>
         <NavLink
+          activeStyle={{ color: "#E44918" }}
           to="/"
+          exact
           style={{ textDecoration: "none", color: "#fff" }}
-          activeStyle={{ backgroundColor: "#eee" }}
         >
           <ListItem button sx={{ margin: "10px 0" }}>
             <ListItemIcon>
@@ -33,9 +34,9 @@ export default function Sidebar({ handleDrawerClose, open }) {
           </ListItem>
         </NavLink>
         <NavLink
+          activeStyle={{ color: "#E44918" }}
           to="/playlists"
           style={{ textDecoration: "none", color: "#fff" }}
-          activeStyle={{ backgroundColor: "#eee" }}
         >
           <ListItem button sx={{ margin: "10px 0" }}>
             <ListItemIcon>
@@ -47,9 +48,9 @@ export default function Sidebar({ handleDrawerClose, open }) {
           </ListItem>
         </NavLink>
         <NavLink
+          activeStyle={{ color: "#E44918" }}
           to="/watch-later"
           style={{ textDecoration: "none", color: "#fff" }}
-          activeStyle={{ backgroundColor: "#eee" }}
         >
           <ListItem button sx={{ margin: "10px 0" }}>
             <ListItemIcon>
@@ -61,9 +62,9 @@ export default function Sidebar({ handleDrawerClose, open }) {
           </ListItem>
         </NavLink>
         <NavLink
+          activeStyle={{ color: "#E44918" }}
           to="/liked"
           style={{ textDecoration: "none", color: "#fff" }}
-          activeStyle={{ backgroundColor: "#eee" }}
         >
           <ListItem button sx={{ margin: "10px 0" }}>
             <ListItemIcon>
@@ -75,9 +76,9 @@ export default function Sidebar({ handleDrawerClose, open }) {
           </ListItem>
         </NavLink>
         <NavLink
+          activeStyle={{ color: "#E44918" }}
           to="/saved"
           style={{ textDecoration: "none", color: "#fff" }}
-          activeStyle={{ backgroundColor: "#eee" }}
         >
           <ListItem button sx={{ margin: "10px 0" }}>
             <ListItemIcon>
@@ -89,9 +90,9 @@ export default function Sidebar({ handleDrawerClose, open }) {
           </ListItem>
         </NavLink>
         <NavLink
+          activeStyle={{ color: "#E44918" }}
           to="/history"
           style={{ textDecoration: "none", color: "#fff" }}
-          activeStyle={{ backgroundColor: "#eee" }}
         >
           <ListItem button sx={{ margin: "10px 0" }}>
             <ListItemIcon>

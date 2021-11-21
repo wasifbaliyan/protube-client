@@ -4,11 +4,17 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import { AccountCircle } from "@mui/icons-material";
-import { Menu, MenuItem, TextField } from "@mui/material";
+import { InputAdornment, Menu, MenuItem, TextField } from "@mui/material";
 import { logout } from "../redux/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
+import { setSearch } from "../redux/videoSlice";
+
 export default function Header({ open, setOpen }) {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { search } = useSelector((state) => state.video);
   const history = useHistory();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -19,6 +25,11 @@ export default function Header({ open, setOpen }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  React.useEffect(() => {
+    if (search.length !== 0) {
+      history.push("/");
+    }
+  }, [search, history]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -38,16 +49,20 @@ export default function Header({ open, setOpen }) {
 
           <Box sx={{ flexGrow: 1 }}>
             <TextField
+              onChange={(e) => dispatch(setSearch({ value: e.target.value }))}
               sx={{ color: "#fff", backgroundColor: "#121212", width: "350px" }}
               variant="outlined"
               type="search"
               placeholder="Search"
-              inputProps={{
+              InputProps={{
                 style: {
                   color: "#fff",
-                  padding: "12px",
-                  fontSize: "1.2rem",
                 },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon htmlColor="gray" />
+                  </InputAdornment>
+                ),
               }}
             />
           </Box>
@@ -69,16 +84,21 @@ export default function Header({ open, setOpen }) {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem
-              onClick={() => {
-                dispatch(logout());
-                history.push("/");
-                handleClose();
-              }}
-            >
-              Logout
-            </MenuItem>
+            {isLoggedIn ? (
+              <MenuItem
+                onClick={() => {
+                  dispatch(logout());
+                  history.push("/");
+                  handleClose();
+                }}
+              >
+                Logout
+              </MenuItem>
+            ) : (
+              <Link style={{ textDecoration: "none" }} to="/login">
+                <MenuItem>Sign In</MenuItem>
+              </Link>
+            )}
           </Menu>
         </Toolbar>
       </AppBar>

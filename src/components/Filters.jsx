@@ -18,10 +18,14 @@ export default function Filters({ filter, setFilter }) {
       borderBottom="1px solid #333"
       padding="10px"
       backgroundColor="#202020"
+      position="relative"
+      zIndex="1000"
     >
       <Stack direction="row" spacing={1} flexWrap="wrap">
         {CATEGORIES.map((category) => (
           <Chip
+            key={category}
+            sx={{ marginBottom: ".2rem" }}
             onClick={() => setFilter(category)}
             color="info"
             variant={filter === category ? "filled" : "outlined"}

@@ -8,37 +8,30 @@ import {
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import { DeleteOutlineOutlined } from "@mui/icons-material";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getPlaylistDetails } from "../redux/playlistSlice";
-import { removeVideoFromPlaylist } from "../api";
-import { toast } from "react-toastify";
+import { getWatchLaterVideos } from "../redux/watchSlice";
+import { removeFromWatch } from "../api";
 import { Link } from "react-router-dom";
-
-export default function PlaylistDetails() {
-  const { id } = useParams();
-  const { playlistDetails, playlistStatus } = useSelector(
-    (state) => state.playlist
-  );
+import { toast } from "react-toastify";
+export default function WatchLater() {
   const dispatch = useDispatch();
+  const { videos, status } = useSelector((state) => state.watch);
   useEffect(() => {
-    dispatch(getPlaylistDetails(id));
-  }, [dispatch, id]);
+    dispatch(getWatchLaterVideos());
+  }, [dispatch]);
 
-  async function handleRemove(videoId) {
+  async function handleRemove(id) {
     try {
       const confirmaton = window.confirm(
         "Are you sure you want to remove this?"
       );
       if (!confirmaton) return;
 
-      const res = await removeVideoFromPlaylist({
-        playlistId: id,
-        id: videoId,
-      });
+      const res = await removeFromWatch(id);
       if (res) {
-        toast.success("Video removed successfully");
-        dispatch(getPlaylistDetails(id));
+        toast.success("Video removed from bookmarks");
+
+        dispatch(getWatchLaterVideos());
       }
     } catch (error) {
       toast.error("Something went wrong");
@@ -47,19 +40,19 @@ export default function PlaylistDetails() {
 
   return (
     <>
-      {playlistStatus === "loading" && <CircularProgress />}
-      {playlistStatus === "success" && (
+      {status === "loading" && <CircularProgress />}
+      {status === "success" && (
         <Box sx={{ maxHeight: "100%", overflowY: "scroll" }}>
           <Box px="1rem" pt="1rem">
             <Typography sx={{ color: "#eee" }} variant="h5">
-              {playlistDetails.name} Videos
+              Watch Later Videos
             </Typography>
             <Typography sx={{ color: "#ccc" }} variant="h6">
-              {playlistDetails.videos.length} Videos
+              {videos.length} Videos
             </Typography>
           </Box>
           <Stack sx={{ p: "1rem" }}>
-            {playlistDetails.videos.map((video) => (
+            {videos.map((video) => (
               <Box margin="10px 0" key={video._id}>
                 <Link
                   to={`/videos/${video.videoId._id}`}
