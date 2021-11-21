@@ -63,3 +63,29 @@ export const removeFromHistory = async (data) => {
   }
   return response.data;
 };
+
+export const createPlaylist = async (data) => {
+  const response = await axios.post("/api/playlists", data);
+  if (!response.statusText === "OK") {
+    throw new Error("Something went wrong!");
+  }
+  return response.data;
+};
+
+export const addVideoToPlaylist = async (data) => {
+  const response = await axios.post("/api/playlists/videos", data);
+  if (!response.statusText === "OK") {
+    throw new Error("Something went wrong!");
+  }
+  return response.data;
+};
+
+export const removeVideoFromPlaylist = async (data) => {
+  const response = await axios.delete(
+    `/api/playlists/videos?id=${data.id}&playlistId=${data.playlistId}`
+  );
+  if (!response.statusText === "OK") {
+    throw new Error("Something went wrong!");
+  }
+  return response.data;
+};

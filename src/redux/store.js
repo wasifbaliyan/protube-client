@@ -5,6 +5,7 @@ import likeSlice from "./likeSlice";
 import videoSlice from "./videoSlice";
 import watchSlice from "./watchSlice";
 import historySlice from "./historySlice";
+import playlistSlice from "./playlistSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     bookmark: bookmarkSlice,
     watch: watchSlice,
     history: historySlice,
+    playlist: playlistSlice,
   },
 });

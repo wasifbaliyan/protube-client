@@ -6,9 +6,12 @@ import IconButton from "@mui/material/IconButton";
 import { AccountCircle } from "@mui/icons-material";
 import { Menu, MenuItem, TextField } from "@mui/material";
 import { logout } from "../redux/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+
 export default function Header({ open, setOpen }) {
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const history = useHistory();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -69,16 +72,21 @@ export default function Header({ open, setOpen }) {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem
-              onClick={() => {
-                dispatch(logout());
-                history.push("/");
-                handleClose();
-              }}
-            >
-              Logout
-            </MenuItem>
+            {isLoggedIn ? (
+              <MenuItem
+                onClick={() => {
+                  dispatch(logout());
+                  history.push("/");
+                  handleClose();
+                }}
+              >
+                Logout
+              </MenuItem>
+            ) : (
+              <Link style={{ textDecoration: "none" }} to="/login">
+                <MenuItem>Sign In</MenuItem>
+              </Link>
+            )}
           </Menu>
         </Toolbar>
       </AppBar>
