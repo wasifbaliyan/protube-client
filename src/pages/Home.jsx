@@ -4,6 +4,7 @@ import Filters from "../components/Filters";
 import Video from "../components/Video";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideos } from "../redux/videoSlice";
+import { Box } from "@mui/system";
 
 export default function Home() {
   const { search } = useSelector((state) => state.video);
@@ -39,7 +40,11 @@ export default function Home() {
         spacing="30"
         padding="2rem"
       >
-        {status === "loading" && <CircularProgress color="info" />}
+        {status === "loading" && (
+          <Box display="flex" justifyContent="center" width="inherit" pt="1rem">
+            <CircularProgress color="info" />
+          </Box>
+        )}
         {status === "success" &&
           getQueriedVideos().map((video) => (
             <Grid item key={video._id}>

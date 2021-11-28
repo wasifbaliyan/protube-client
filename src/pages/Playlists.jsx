@@ -48,7 +48,11 @@ export default function Playlists() {
 
   return (
     <>
-      {status === "loading" && <CircularProgress />}
+      {status === "loading" && (
+        <Box display="flex" justifyContent="center" width="inherit" pt="1rem">
+          <CircularProgress color="info" />
+        </Box>
+      )}
       {status === "success" && (
         <Grid
           container
