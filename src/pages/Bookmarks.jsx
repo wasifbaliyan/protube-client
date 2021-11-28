@@ -22,7 +22,9 @@ export default function Bookmarks() {
     dispatch(getBookmarkedVideos());
   }, [dispatch]);
 
-  async function handleRemove(id) {
+  async function handleRemove(id, e) {
+    e.preventDefault();
+
     try {
       const confirmaton = window.confirm(
         "Are you sure you want to remove this?"
@@ -77,7 +79,7 @@ export default function Bookmarks() {
                           {video.videoId && video.videoId.title}
                         </Typography>
                         <IconButton
-                          onClick={() => handleRemove(video.videoId._id)}
+                          onClick={(e) => handleRemove(video.videoId._id, e)}
                           sx={{ ml: ".8rem" }}
                         >
                           <DeleteOutlineOutlined

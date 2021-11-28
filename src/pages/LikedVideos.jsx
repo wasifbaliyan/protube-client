@@ -21,7 +21,8 @@ export default function LikedVideos() {
     dispatch(getLikedVideos());
   }, [dispatch]);
 
-  async function handleRemove(id) {
+  async function handleRemove(id, e) {
+    e.preventDefault();
     try {
       const confirmaton = window.confirm(
         "Are you sure you want to remove this?"
@@ -77,7 +78,7 @@ export default function LikedVideos() {
                           {video.videoId && video.videoId.title}
                         </Typography>
                         <IconButton
-                          onClick={() => handleRemove(video.videoId._id)}
+                          onClick={(e) => handleRemove(video.videoId._id, e)}
                           sx={{ ml: ".8rem" }}
                         >
                           <DeleteOutlineOutlined
