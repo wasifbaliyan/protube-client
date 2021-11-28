@@ -117,7 +117,11 @@ export default function VideoDetails() {
   return (
     <>
       <Box sx={{ maxHeight: "100%", overflowY: "scroll" }}>
-        {status === "loading" && <CircularProgress color="info" />}
+        {status === "loading" && (
+          <Box display="flex" justifyContent="center" width="inherit" pt="1rem">
+            <CircularProgress color="info" />
+          </Box>
+        )}
         {status === "success" && (
           <Grid container>
             <Grid item xs={12} md={10}>

@@ -40,7 +40,11 @@ export default function WatchLater() {
 
   return (
     <>
-      {status === "loading" && <CircularProgress />}
+      {status === "loading" && (
+        <Box display="flex" justifyContent="center" width="inherit" pt="1rem">
+          <CircularProgress color="info" />
+        </Box>
+      )}
       {status === "success" && (
         <Box sx={{ maxHeight: "100%", overflowY: "scroll" }}>
           <Box px="1rem" pt="1rem">

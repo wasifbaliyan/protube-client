@@ -1,7 +1,7 @@
-import { Avatar, Grid, IconButton, Typography } from "@mui/material";
+import { Avatar, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router-dom";
 
 export default function Video({ video }) {
@@ -24,9 +24,9 @@ export default function Video({ video }) {
               <Typography sx={{ py: "5px" }} color="white">
                 {video.title}
               </Typography>
-              <IconButton>
+              {/* <IconButton>
                 <MoreVertIcon sx={{ color: "#fff" }} />
-              </IconButton>
+              </IconButton> */}
             </Box>
             <Typography color="gray">{video.author_name}</Typography>
             <Typography color="gray">

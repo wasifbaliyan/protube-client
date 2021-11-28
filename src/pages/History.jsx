@@ -21,7 +21,9 @@ export default function History() {
     dispatch(getHistoryVideos());
   }, [dispatch]);
 
-  async function handleRemove(id) {
+  async function handleRemove(id, e) {
+    e.preventDefault();
+
     try {
       const confirmaton = window.confirm(
         "Are you sure you want to remove this?"
@@ -41,7 +43,11 @@ export default function History() {
 
   return (
     <>
-      {status === "loading" && <CircularProgress />}
+      {status === "loading" && (
+        <Box display="flex" justifyContent="center" width="inherit" pt="1rem">
+          <CircularProgress color="info" />
+        </Box>
+      )}
       {status === "success" && (
         <Box sx={{ maxHeight: "100%", overflowY: "scroll" }}>
           <Box px="1rem" pt="1rem">
@@ -73,7 +79,7 @@ export default function History() {
                           {video.videoId && video.videoId.title}
                         </Typography>
                         <IconButton
-                          onClick={() => handleRemove(video.videoId._id)}
+                          onClick={(e) => handleRemove(video.videoId._id, e)}
                           sx={{ ml: ".8rem" }}
                         >
                           <DeleteOutlineOutlined
